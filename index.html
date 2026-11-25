@@ -85,6 +85,18 @@
     .archive-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
     .card-foot { margin-top: auto; padding-top: 20px; display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; }
     .card-foot span:last-child { color: var(--cyan); }
+    .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .format-button {
+      min-height: 86px; display: flex; align-items: center; gap: 14px;
+      padding: 16px; background: #142023; border: 1px solid var(--line);
+      border-radius: 7px; transition: border-color .18s, background .18s, transform .18s;
+    }
+    .format-button:hover { border-color: var(--cyan); background: var(--panel-2); transform: translateY(-2px); }
+    .format-symbol { width: 34px; color: var(--cyan); font-size: 22px; text-align: center; }
+    .format-copy { display: flex; flex: 1; flex-direction: column; gap: 6px; }
+    .format-copy strong { font-size: 12px; font-weight: 650; }
+    .format-copy small { color: var(--muted); font-size: 9px; letter-spacing: .09em; }
+    .format-arrow { color: var(--cyan); font-size: 17px; }
     .notice {
       margin-top: 28px; padding: 16px 18px; border-left: 2px solid var(--cyan);
       background: #152124; color: var(--muted); font-size: 12px; line-height: 1.65;
@@ -94,7 +106,7 @@
     .empty { display: none; padding: 22px; border: 1px dashed var(--line); color: var(--muted); text-align: center; font-size: 12px; }
     @media (max-width: 760px) {
       .intro { align-items: start; flex-direction: column; }
-      .archive-grid { grid-template-columns: 1fr; }
+      .archive-grid, .format-grid { grid-template-columns: 1fr; }
       .archive-card { min-height: 165px; }
       .header-meta { gap: 10px; }
       .header-meta .meta-extra { display: none; }
@@ -186,6 +198,32 @@
         </a>
       </div>
       <div class="empty" id="empty-state">No matching directory descriptions found.</div>
+    </section>
+
+    <div class="rule"></div>
+
+    <section aria-labelledby="formats-title">
+      <div class="section-heading">
+        <h2 id="formats-title">Record formats</h2>
+        <span class="section-note">SELECT A MEDIA COLLECTION</span>
+      </div>
+      <div class="format-grid">
+        <a class="format-button" href="audio/">
+          <span class="format-symbol" aria-hidden="true">◖))</span>
+          <span class="format-copy"><strong>Audio Transmissions</strong><small>VOICE LOGS // SIGNALS // RECORDINGS</small></span>
+          <span class="format-arrow">→</span>
+        </a>
+        <a class="format-button" href="visual/">
+          <span class="format-symbol" aria-hidden="true">▧</span>
+          <span class="format-copy"><strong>Visual Evidence</strong><small>VIDEO // PHOTOGRAPHS // FOOTAGE</small></span>
+          <span class="format-arrow">→</span>
+        </a>
+        <a class="format-button" href="documents/">
+          <span class="format-symbol" aria-hidden="true">▤</span>
+          <span class="format-copy"><strong>Written Records</strong><small>REPORTS // MEMOS // FILES</small></span>
+          <span class="format-arrow">→</span>
+        </a>
+      </div>
     </section>
 
     <div class="notice">
