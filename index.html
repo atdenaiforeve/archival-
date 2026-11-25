@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#10191c">
   <meta name="description" content="ARCHIVAL — Nordic Central Records Database.">
   <title>ARCHIVAL — Nordic Central Records</title>
@@ -23,14 +23,18 @@
       font-family: Inter, "Segoe UI", Arial, sans-serif;
     }
     * { box-sizing: border-box; }
+    html { min-width: 320px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
     body {
       margin: 0;
       min-height: 100vh;
+      min-height: 100svh;
       background: var(--bg);
       color: var(--text);
       letter-spacing: .01em;
+      overflow-x: hidden;
     }
     a { color: inherit; text-decoration: none; }
+    a:focus-visible { outline: 3px solid var(--cyan-soft); outline-offset: 4px; }
     .topline { height: 4px; background: linear-gradient(90deg, var(--cyan) 0 23%, #284447 23% 100%); }
     header {
       border-bottom: 1px solid var(--line);
@@ -41,15 +45,15 @@
       min-height: 82px; display: flex; align-items: center;
       justify-content: space-between; gap: 24px;
     }
-    .brand { display: flex; align-items: center; gap: 14px; }
+    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
     .brand-mark {
-      width: 38px; height: 38px; display: grid; place-items: center;
+      width: 38px; height: 38px; flex: 0 0 38px; display: grid; place-items: center;
       border: 1px solid var(--cyan); color: var(--cyan);
       font-size: 18px; font-weight: 700; border-radius: 5px;
     }
     .brand-name { font-size: 18px; font-weight: 700; letter-spacing: .19em; }
     .brand-sub { margin-top: 4px; color: var(--muted); font-size: 10px; letter-spacing: .14em; }
-    .header-meta { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 11px; }
+    .header-meta { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 11px; white-space: nowrap; }
     .status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); margin-right: 8px; box-shadow: 0 0 8px #65c9c566; }
     main { padding: 42px 0 64px; }
     .eyebrow { color: var(--cyan); font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
@@ -61,20 +65,78 @@
     .rule { height: 1px; background: var(--line); margin: 28px 0; }
     .section-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px; }
     h2 { margin: 0; font-size: 13px; font-weight: 650; letter-spacing: .13em; text-transform: uppercase; }
-    .section-note { color: var(--muted); font-size: 11px; }
+    .section-note { color: var(--muted); font-size: 11px; text-align: right; }
+    .format-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .format-button {
+      min-width: 0;
+      min-height: 104px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 20px 18px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, var(--panel-2), var(--panel));
+      transition: border-color .18s ease, background-color .18s ease, transform .18s ease;
+      touch-action: manipulation;
+      -webkit-tap-highlight-color: #65c9c522;
+    }
+    .format-button:hover { border-color: var(--cyan); background: #1d3032; transform: translateY(-2px); }
+    .format-symbol { flex: 0 0 34px; color: var(--cyan); font-size: 25px; text-align: center; }
+    .format-copy { display: flex; flex: 1 1 auto; min-width: 0; flex-direction: column; gap: 7px; }
+    .format-copy strong { font-size: 14px; font-weight: 650; line-height: 1.3; }
+    .format-copy small { color: var(--muted); font-size: 9px; letter-spacing: .1em; line-height: 1.5; overflow-wrap: anywhere; }
+    .format-arrow { color: var(--cyan); font-size: 20px; flex: 0 0 auto; }
+    .notice {
+      padding: 15px 17px;
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--amber);
+      border-radius: 5px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+    .notice strong { color: var(--amber); letter-spacing: .1em; }
+    footer {
+      display: flex; justify-content: space-between; gap: 18px;
+      padding: 18px 0 24px; border-top: 1px solid var(--line);
+      color: var(--muted); font-size: 9px; letter-spacing: .1em;
+    }
+    @media (min-width: 761px) and (max-width: 980px) {
+      .format-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .format-button:last-child { grid-column: 1 / -1; }
+    }
     @media (max-width: 760px) {
       .intro { align-items: start; flex-direction: column; }
       .format-grid { grid-template-columns: 1fr; }
       .header-meta { gap: 10px; }
       .header-meta .meta-extra { display: none; }
+      .format-button { min-height: 88px; }
     }
     @media (max-width: 440px) {
       .header-inner, main, footer { width: min(100% - 28px, 1120px); }
-      .header-inner { min-height: 72px; }
+      .header-inner { min-height: 72px; gap: 10px; }
+      .brand { gap: 10px; }
+      .brand-mark { width: 34px; height: 34px; flex-basis: 34px; }
       .brand-name { font-size: 15px; }
-      .brand-sub { font-size: 8px; }
+      .brand-sub { font-size: 8px; letter-spacing: .08em; }
+      .header-meta { font-size: 9px; }
       main { padding-top: 30px; }
-      footer { flex-direction: column; }
+      .section-heading { align-items: flex-start; flex-direction: column; gap: 7px; }
+      .section-note { text-align: left; }
+      .format-button { padding: 17px 14px; gap: 11px; }
+      footer { flex-direction: column; line-height: 1.6; }
+    }
+    @media (hover: none) {
+      .format-button:hover { transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
     }
   </style>
 </head>
@@ -121,17 +183,17 @@
         <a class="format-button" href="audio/">
           <span class="format-symbol" aria-hidden="true">◖))</span>
           <span class="format-copy"><strong>Audio Transmissions</strong><small>VOICE LOGS // SIGNALS // RECORDINGS</small></span>
-          <span class="format-arrow">→</span>
+          <span class="format-arrow" aria-hidden="true">→</span>
         </a>
         <a class="format-button" href="visual/">
           <span class="format-symbol" aria-hidden="true">▧</span>
           <span class="format-copy"><strong>Visual Evidence</strong><small>VIDEO // PHOTOGRAPHS // FOOTAGE</small></span>
-          <span class="format-arrow">→</span>
+          <span class="format-arrow" aria-hidden="true">→</span>
         </a>
         <a class="format-button" href="documents/">
           <span class="format-symbol" aria-hidden="true">▤</span>
           <span class="format-copy"><strong>Written Records</strong><small>REPORTS // MEMOS // FILES</small></span>
-          <span class="format-arrow">→</span>
+          <span class="format-arrow" aria-hidden="true">→</span>
         </a>
       </div>
     </section>
@@ -147,6 +209,5 @@
     <span>ARCHIVAL // NORDIC RECORDS DIVISION</span>
     <span>UNAUTHORISED ALTERATION OF RECORDS IS PROHIBITED</span>
   </footer>
-
 </body>
 </html>
