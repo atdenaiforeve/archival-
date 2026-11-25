@@ -62,52 +62,9 @@
     .section-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px; }
     h2 { margin: 0; font-size: 13px; font-weight: 650; letter-spacing: .13em; text-transform: uppercase; }
     .section-note { color: var(--muted); font-size: 11px; }
-    .search-wrap { margin: 22px 0 27px; }
-    .search-wrap label { display: block; margin-bottom: 8px; color: var(--muted); font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
-    .search {
-      width: 100%; padding: 13px 15px; border: 1px solid var(--line); border-radius: 6px;
-      background: #131f22; color: var(--text); font: inherit; font-size: 13px; outline: none;
-    }
-    .search:focus { border-color: var(--cyan); box-shadow: 0 0 0 2px #65c9c51c; }
-    .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-    .archive-card {
-      min-height: 190px; padding: 21px; background: var(--panel);
-      border: 1px solid var(--line); border-radius: var(--radius);
-      display: flex; flex-direction: column; transition: border-color .18s, transform .18s;
-    }
-    .archive-card:hover { border-color: var(--cyan); transform: translateY(-2px); }
-    .card-top { display: flex; justify-content: space-between; align-items: center; }
-    .folder-icon { color: var(--cyan); font-size: 21px; }
-    .access { border: 1px solid var(--line); border-radius: 3px; padding: 4px 7px; color: var(--muted); font-size: 9px; letter-spacing: .1em; }
-    .access.restricted { color: var(--amber); border-color: #806b48; }
-    .access.unknown { color: var(--red); border-color: #80514e; }
-    .archive-card h3 { margin: 20px 0 7px; font-size: 17px; font-weight: 600; }
-    .archive-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
-    .card-foot { margin-top: auto; padding-top: 20px; display: flex; justify-content: space-between; color: var(--muted); font-size: 10px; }
-    .card-foot span:last-child { color: var(--cyan); }
-    .format-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-    .format-button {
-      min-height: 86px; display: flex; align-items: center; gap: 14px;
-      padding: 16px; background: #142023; border: 1px solid var(--line);
-      border-radius: 7px; transition: border-color .18s, background .18s, transform .18s;
-    }
-    .format-button:hover { border-color: var(--cyan); background: var(--panel-2); transform: translateY(-2px); }
-    .format-symbol { width: 34px; color: var(--cyan); font-size: 22px; text-align: center; }
-    .format-copy { display: flex; flex: 1; flex-direction: column; gap: 6px; }
-    .format-copy strong { font-size: 12px; font-weight: 650; }
-    .format-copy small { color: var(--muted); font-size: 9px; letter-spacing: .09em; }
-    .format-arrow { color: var(--cyan); font-size: 17px; }
-    .notice {
-      margin-top: 28px; padding: 16px 18px; border-left: 2px solid var(--cyan);
-      background: #152124; color: var(--muted); font-size: 12px; line-height: 1.65;
-    }
-    .notice strong { color: var(--text); font-weight: 600; }
-    footer { border-top: 1px solid var(--line); padding: 19px 0 25px; display: flex; justify-content: space-between; gap: 16px; color: #718687; font-size: 10px; letter-spacing: .06em; }
-    .empty { display: none; padding: 22px; border: 1px dashed var(--line); color: var(--muted); text-align: center; font-size: 12px; }
     @media (max-width: 760px) {
       .intro { align-items: start; flex-direction: column; }
-      .archive-grid, .format-grid { grid-template-columns: 1fr; }
-      .archive-card { min-height: 165px; }
+      .format-grid { grid-template-columns: 1fr; }
       .header-meta { gap: 10px; }
       .header-meta .meta-extra { display: none; }
     }
@@ -155,57 +112,10 @@
 
     <div class="rule"></div>
 
-    <section aria-labelledby="directory-title">
-      <div class="section-heading">
-        <h2 id="directory-title">Record directories</h2>
-        <span class="section-note">03 DIRECTORY GROUPS</span>
-      </div>
-
-      <div class="search-wrap">
-        <label for="archive-search">Search directory descriptions</label>
-        <input class="search" id="archive-search" type="search" placeholder="Search records or directory names..." autocomplete="off">
-      </div>
-
-      <div class="archive-grid" id="archive-grid">
-        <a class="archive-card" href="lore/">
-          <div class="card-top">
-            <span class="folder-icon" aria-hidden="true">▤</span>
-            <span class="access">OPEN ACCESS</span>
-          </div>
-          <h3>01 // Lore</h3>
-          <p>Catalogued documents, personnel files, historical records and approved research material.</p>
-          <div class="card-foot"><span>DIRECTORY 001</span><span>VIEW INDEX →</span></div>
-        </a>
-
-        <a class="archive-card" href="restricted/">
-          <div class="card-top">
-            <span class="folder-icon" aria-hidden="true">▣</span>
-            <span class="access restricted">CONTROLLED</span>
-          </div>
-          <h3>02 // Restricted</h3>
-          <p>Records with additional access requirements. Some entries may require a key or verified sequence.</p>
-          <div class="card-foot"><span>DIRECTORY 002</span><span>ACCESS CONTROL →</span></div>
-        </a>
-
-        <a class="archive-card" href="unknown/">
-          <div class="card-top">
-            <span class="folder-icon" aria-hidden="true">◈</span>
-            <span class="access unknown">UNCLASSIFIED</span>
-          </div>
-          <h3>03 // Unknown</h3>
-          <p>Unidentified files, damaged transmissions and material awaiting formal classification.</p>
-          <div class="card-foot"><span>DIRECTORY 003</span><span>REVIEW MATERIAL →</span></div>
-        </a>
-      </div>
-      <div class="empty" id="empty-state">No matching directory descriptions found.</div>
-    </section>
-
-    <div class="rule"></div>
-
     <section aria-labelledby="formats-title">
       <div class="section-heading">
-        <h2 id="formats-title">Record formats</h2>
-        <span class="section-note">SELECT A MEDIA COLLECTION</span>
+        <h2 id="formats-title">Record collections</h2>
+        <span class="section-note">SELECT A RECORD FORMAT</span>
       </div>
       <div class="format-grid">
         <a class="format-button" href="audio/">
@@ -226,6 +136,8 @@
       </div>
     </section>
 
+    <div class="rule"></div>
+
     <div class="notice">
       <strong>ARCHIVE NOTICE</strong> — Directory access labels describe the fictional archive's record classifications. This public website is an archival interface; do not submit real passwords or personal information.
     </div>
@@ -236,20 +148,5 @@
     <span>UNAUTHORISED ALTERATION OF RECORDS IS PROHIBITED</span>
   </footer>
 
-  <script>
-    const search = document.getElementById('archive-search');
-    const cards = [...document.querySelectorAll('.archive-card')];
-    const empty = document.getElementById('empty-state');
-    search.addEventListener('input', () => {
-      const term = search.value.trim().toLowerCase();
-      let visible = 0;
-      cards.forEach(card => {
-        const match = card.textContent.toLowerCase().includes(term);
-        card.hidden = !match;
-        if (match) visible++;
-      });
-      empty.style.display = visible ? 'none' : 'block';
-    });
-  </script>
 </body>
 </html>
