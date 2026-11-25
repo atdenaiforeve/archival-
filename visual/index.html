@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101719">
+  <meta name="description" content="ARCHIVAL — Visual Evidence.">
+  <title>Visual Evidence — ARCHIVAL</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg:#101719; --panel:#172326; --panel2:#1c2b2e; --line:#304447;
+      --text:#e5eeee; --muted:#91a5a6; --cyan:#65c9c5; --cyan-soft:#a0e2dc;
+      --amber:#c7a875; --radius:9px;
+      font-family:Inter,"Segoe UI",Arial,sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{min-width:320px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+    body{margin:0;min-height:100vh;min-height:100svh;background:var(--bg);color:var(--text);letter-spacing:.01em;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    a:focus-visible{outline:3px solid var(--cyan-soft);outline-offset:4px}
+    .topline{height:4px;background:linear-gradient(90deg,var(--cyan) 0 23%,#284447 23% 100%)}
+    header{border-bottom:1px solid var(--line);background:#131e21}
+    .header-inner,main,footer{width:min(1120px,calc(100% - 44px));margin:0 auto}
+    .header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:14px;min-width:0}
+    .brand-mark{width:38px;height:38px;flex:0 0 38px;display:grid;place-items:center;border:1px solid var(--cyan);color:var(--cyan);font-size:18px;font-weight:700;border-radius:5px}
+    .brand-name{font-size:18px;font-weight:700;letter-spacing:.19em}
+    .brand-sub{margin-top:4px;color:var(--muted);font-size:10px;letter-spacing:.14em}
+    .header-meta{color:var(--muted);font-size:11px;white-space:nowrap}
+    .status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cyan);margin-right:8px;box-shadow:0 0 8px #65c9c566}
+    main{padding:42px 0 64px}
+    .back{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);font-size:11px;letter-spacing:.08em;margin-bottom:34px}
+    .eyebrow{color:var(--cyan);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+    .intro{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}
+    h1{margin:10px 0 9px;font-size:clamp(29px,5vw,43px);font-weight:600;letter-spacing:-.035em}
+    .intro p{max-width:640px;margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+    .stamp{min-width:160px;padding:13px 15px;border:1px solid var(--line);border-radius:6px;color:var(--muted);font-size:10px;line-height:1.8}
+    .stamp strong{display:block;color:var(--text);font-size:12px;letter-spacing:.08em}
+    .rule{height:1px;background:var(--line);margin:28px 0}
+    .section-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:15px}
+    h2{margin:0;font-size:13px;font-weight:650;letter-spacing:.13em;text-transform:uppercase}
+    .section-note{color:var(--muted);font-size:11px;text-align:right}
+    .empty{min-height:190px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;border:1px dashed #40585a;border-radius:var(--radius);background:linear-gradient(145deg,#17232699,#111b1d)}
+    .empty-symbol{font-size:30px;color:var(--cyan);margin-bottom:14px}
+    .empty strong{font-size:13px;letter-spacing:.12em}
+    .empty p{max-width:470px;margin:10px 0 0;color:var(--muted);font-size:12px;line-height:1.7}
+    .notice{padding:15px 17px;border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:5px;color:var(--muted);font-size:11px;line-height:1.7;overflow-wrap:anywhere}
+    .notice strong{color:var(--amber);letter-spacing:.1em}
+    footer{display:flex;justify-content:space-between;gap:18px;padding:18px 0 24px;border-top:1px solid var(--line);color:var(--muted);font-size:9px;letter-spacing:.1em}
+    @media(max-width:760px){.intro{align-items:start;flex-direction:column}.header-meta{font-size:9px} .empty{min-height:170px}}
+    @media(max-width:440px){.header-inner,main,footer{width:min(100% - 28px,1120px)}.header-inner{min-height:72px;gap:10px}.brand{gap:10px}.brand-mark{width:34px;height:34px;flex-basis:34px}.brand-name{font-size:15px}.brand-sub{font-size:8px;letter-spacing:.08em}main{padding-top:30px}.section-heading{align-items:flex-start;flex-direction:column;gap:7px}.section-note{text-align:left}footer{flex-direction:column;line-height:1.6}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <div class="header-inner">
+      <a class="brand" href="../" aria-label="ARCHIVAL home">
+        <div class="brand-mark">A</div>
+        <div><div class="brand-name">ARCHIVAL</div><div class="brand-sub">NORDIC // CENTRAL RECORDS DATABASE</div></div>
+      </a>
+      <div class="header-meta"><span class="status-dot"></span>ARCHIVE SYSTEM ONLINE</div>
+    </div>
+  </header>
+  <main>
+    <a class="back" href="../">← RETURN TO CENTRAL ARCHIVE</a>
+    <section class="intro">
+      <div>
+        <div class="eyebrow">Nordic records division / VIS-001</div>
+        <h1>Visual Evidence</h1>
+        <p>Photographs, video footage and other visual material recovered or submitted to the Nordic records division.</p>
+      </div>
+      <div class="stamp">COLLECTION STATUS<strong>NO RECORDS YET</strong>DIRECTORY // VIS-001</div>
+    </section>
+    <div class="rule"></div>
+    <section aria-labelledby="records-title">
+      <div class="section-heading">
+        <h2 id="records-title">Visual evidence directory</h2>
+        <span class="section-note">CATALOGUED ITEMS // 000</span>
+      </div>
+      <div class="empty">
+        <div class="empty-symbol" aria-hidden="true">▧</div>
+        <strong>NO RECORDS CATALOGUED</strong>
+        <p>This collection has been established. No visual evidence files have been added to the directory yet. New records will appear here when they are filed.</p>
+      </div>
+    </section>
+    <div class="rule"></div>
+    <div class="notice"><strong>RECORDS DIVISION NOTICE</strong> — This directory is awaiting its first entry. Collection files and their catalogue entries will be added as the archive expands.</div>
+  </main>
+  <footer><span>ARCHIVAL // NORDIC RECORDS DIVISION</span><span>VISUAL COLLECTION // VIS-001</span></footer>
+</body>
+</html>
