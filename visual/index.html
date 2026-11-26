@@ -30,7 +30,7 @@
     .header-meta{color:var(--muted);font-size:11px;white-space:nowrap}
     .status-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--cyan);margin-right:8px;box-shadow:0 0 8px #65c9c566}
     main{padding:42px 0 64px}
-    .back{display:inline-flex;align-items:center;gap:9px;color:var(--cyan);font-size:11px;letter-spacing:.08em;margin-bottom:34px}
+    .back{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:0 16px;border:1px solid var(--cyan);border-radius:6px;background:#172b2d;color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:.09em;margin-bottom:34px;transition:background .18s ease,border-color .18s ease}\n    .back:hover,.exit-bottom:hover{background:#203b3d;border-color:var(--cyan-soft)}\n    .exit-bottom{display:flex;align-items:center;justify-content:center;gap:10px;min-height:48px;width:fit-content;max-width:100%;margin:24px auto 0;padding:0 22px;border:1px solid var(--cyan);border-radius:6px;background:#172b2d;color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:.1em;text-align:center;transition:background .18s ease,border-color .18s ease;touch-action:manipulation}\n    .back:focus-visible,.exit-bottom:focus-visible{outline:3px solid var(--cyan-soft);outline-offset:4px}
     .eyebrow{color:var(--cyan);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
     .intro{display:flex;justify-content:space-between;align-items:end;gap:30px;margin-bottom:30px}
     h1{margin:10px 0 9px;font-size:clamp(29px,5vw,43px);font-weight:600;letter-spacing:-.035em}
@@ -65,7 +65,7 @@
     </div>
   </header>
   <main>
-    <a class="back" href="../">← RETURN TO CENTRAL ARCHIVE</a>
+    <a class="back" href="../" aria-label="Exit this collection and return to the central archive">← EXIT TO CENTRAL ARCHIVE</a>
     <section class="intro">
       <div>
         <div class="eyebrow">Nordic records division / VIS-001</div>
