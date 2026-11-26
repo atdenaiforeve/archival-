@@ -7,7 +7,7 @@
 <meta name="description" content="ARCHIVAL — Written Records directory.">
 <title>Written Records — ARCHIVAL</title>
 <style>
-:root{color-scheme:dark;--bg:#101719;--panel:#172326;--line:#304447;--text:#e5eeee;--muted:#91a5a6;--cyan:#65c9c5;--amber:#c7a875;--red:#c47b73;font-family:Inter,"Segoe UI",Arial,sans-serif}
+:root{color-scheme:dark;--bg:#101719;--panel:#172326;--line:#304447;--text:#e5eeee;--muted:#91a5a6;--cyan:#65c9c5;--blue:#397fb8;--blue-light:#83c7f0;--red:#c47b73;font-family:Inter,"Segoe UI",Arial,sans-serif}
 *{box-sizing:border-box}html{min-width:320px}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text)}a{color:inherit;text-decoration:none}button,input{font:inherit}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #a0e2dc;outline-offset:4px}
 .topline{height:4px;background:linear-gradient(90deg,var(--cyan) 0 23%,#284447 23%)}header{border-bottom:1px solid var(--line);background:#131e21}
 .header-inner,main,footer{width:min(1120px,calc(100% - 44px));margin:auto}.header-inner{min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px}
@@ -22,19 +22,19 @@ h1{margin:9px 0;font-size:clamp(29px,5vw,42px);font-weight:600;letter-spacing:-.
 .folder-card{display:flex;align-items:center;gap:16px;width:100%;min-height:122px;padding:18px;text-align:left;background:linear-gradient(145deg,#1c2d30,#142023);border:1px solid #40585a;border-radius:8px;color:var(--text);cursor:pointer;transition:border-color .15s,background .15s}
 .folder-card:hover{border-color:var(--cyan);background:#203638}
 .folder-icon{position:relative;display:block;width:66px;height:54px;flex:0 0 66px}
-.folder-icon:before{content:"";position:absolute;left:4px;top:4px;width:29px;height:12px;background:#4d91c9;border:1px solid #83b9e6;border-bottom:0;border-radius:4px 4px 0 0}
-.folder-icon:after{content:"";position:absolute;left:1px;right:1px;top:14px;bottom:2px;background:linear-gradient(150deg,#70b5eb,#28639b);border:1px solid #a0d0f4;border-radius:3px 5px 7px 7px;clip-path:polygon(0 0,100% 0,92% 100%,0 100%);box-shadow:inset 0 2px 0 #c5e4ff}
+.folder-icon:before{content:"";position:absolute;left:4px;top:4px;width:29px;height:12px;background:#397fb8;border:1px solid #83c7f0;border-bottom:0;border-radius:4px 4px 0 0}
+.folder-icon:after{content:"";position:absolute;left:1px;right:1px;top:14px;bottom:2px;background:linear-gradient(150deg,#83c7f0,#28639b);border:1px solid #b5e2ff;border-radius:3px 5px 7px 7px;clip-path:polygon(0 0,100% 0,92% 100%,0 100%);box-shadow:inset 0 2px 0 #d9f0ff}
 .folder-info{display:block;min-width:0}.folder-title{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;overflow-wrap:anywhere}.folder-meta{display:block;margin-top:7px;color:var(--muted);font-size:10px;line-height:1.6}.folder-lock{display:block;margin-top:7px;color:var(--cyan);font-size:9px;font-weight:800;letter-spacing:.12em}
-.notice{padding:14px 16px;border:1px solid var(--line);border-left:3px solid var(--amber);border-radius:5px;color:var(--muted);font-size:11px;line-height:1.7}.notice strong{color:var(--amber)}
+.notice{padding:14px 16px;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:5px;color:var(--muted);font-size:11px;line-height:1.7;background:linear-gradient(90deg,#17303355,transparent)}.notice strong{color:var(--cyan)}
 .exit{display:block;width:max-content;max-width:100%;margin:25px auto 0;padding:14px 20px;border:1px solid var(--cyan);border-radius:5px;background:#172b2d;color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:.08em}
 footer{display:flex;justify-content:space-between;gap:15px;padding:18px 0 24px;border-top:1px solid var(--line);color:var(--muted);font-size:9px;letter-spacing:.1em}
 .overlay{position:fixed;inset:0;z-index:5;display:none;align-items:center;justify-content:center;padding:16px;background:#050b0ce8;overflow:auto}.overlay.open{display:flex}
 .dialog{width:min(100%,610px);max-height:90vh;overflow:auto;background:#142023;border:1px solid #496164;border-radius:8px;box-shadow:0 20px 70px #000a}
-.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;border-bottom:1px solid var(--line);background:#19292c}.dialog-label{color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.14em}.close{width:38px;height:38px;background:#101a1c;color:var(--text);border:1px solid var(--line);border-radius:4px;font-size:20px;cursor:pointer}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;border-bottom:1px solid #397fb8;background:linear-gradient(100deg,#1b343c,#19292c)}.dialog-label{color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.14em}.close{width:38px;height:38px;background:#101a1c;color:var(--text);border:1px solid var(--line);border-radius:4px;font-size:20px;cursor:pointer}
 .dialog-body{padding:20px}.class-mark{padding:8px;border:1px solid #795b55;color:#e0a29b;text-align:center;font-size:10px;font-weight:800;letter-spacing:.18em;margin-bottom:16px}
 .meta-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:18px}.meta-cell{padding:11px;border:1px solid var(--line);background:#101a1c;border-radius:4px}.meta-cell span{display:block;color:var(--muted);font-size:9px;letter-spacing:.1em}.meta-cell strong{display:block;margin-top:5px;font-size:12px}
 label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.1em}.password-row{display:flex;gap:8px}.password-row input{flex:1;min-width:0;padding:12px;background:#0d1719;border:1px solid #496164;border-radius:4px;color:var(--text)}.action{min-height:44px;padding:0 16px;background:#1b383a;border:1px solid var(--cyan);border-radius:4px;color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.1em;cursor:pointer}.feedback{min-height:22px;margin:9px 0 0;color:var(--red);font-size:11px}
-.unlocked{display:none}.unlocked.visible{display:block}.file-row{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);border-radius:5px;background:#18272a}.file-symbol{font-size:25px;color:var(--cyan)}.file-title{font-size:12px;font-weight:800;letter-spacing:.06em}.file-details{margin-top:5px;color:var(--muted);font-size:10px;line-height:1.6}
+.unlocked{display:none}.unlocked.visible{display:block}.file-row{display:flex;align-items:center;gap:14px;padding:14px;border:1px solid #397fb8;border-radius:5px;background:linear-gradient(110deg,#19313b,#18272a)}.file-symbol{position:relative;display:block;flex:0 0 34px;width:34px;height:42px;border:2px solid #83c7f0;border-radius:3px;background:linear-gradient(145deg,#397fb8,#1b496e);box-shadow:inset 0 0 0 3px #397fb822}.file-symbol:before{content:"";position:absolute;left:6px;right:6px;top:11px;height:2px;background:#c4e9ff;box-shadow:0 6px 0 #c4e9ff,0 12px 0 #c4e9ff}.file-title{font-size:12px;font-weight:800;letter-spacing:.06em}.file-details{margin-top:5px;color:var(--muted);font-size:10px;line-height:1.6}
 @media(max-width:700px){.intro{align-items:flex-start;flex-direction:column}.header-meta{font-size:9px}.folder-grid{grid-template-columns:1fr}}
 @media(max-width:480px){.header-inner,main,footer{width:calc(100% - 28px)}.header-inner{min-height:72px}.brand-name{font-size:15px}.brand-sub{font-size:8px}.brand-mark{width:34px;height:34px}.meta-grid{grid-template-columns:1fr 1fr}.password-row{flex-direction:column}.action{width:100%}footer{flex-direction:column}}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -85,7 +85,7 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
 <p class="feedback" id="feedback" aria-live="polite"></p>
 </div>
 <div class="unlocked" id="unlockedPanel">
-<div class="file-row"><span class="file-symbol" aria-hidden="true">▤</span><div><div class="file-title">FARB-2019-001 // EMPLOYEE ATTENDANCE REGISTER</div><div class="file-details">CREATED: 2019 · TYPE: PERSONNEL RECORD · STATUS: AWAITING EMPLOYEE ENTRIES</div></div></div>
+<div class="file-row"><span class="file-symbol" aria-hidden="true"></span><div><div class="file-title">FARB-2019-001 // EMPLOYEE ATTENDANCE REGISTER</div><div class="file-details">CREATED: 2019 · TYPE: PERSONNEL RECORD · STATUS: AWAITING EMPLOYEE ENTRIES</div></div></div>
 <p class="record-note">REGISTER SUMMARY: Attendance records documenting personnel names, assigned roles, and daily clock-in and clock-out times. Employee entries will be added to this record.</p>
 </div>
 </div>
