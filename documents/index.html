@@ -109,12 +109,13 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
  const status=document.getElementById('accessStatus');
  function show(){overlay.classList.add('open');input.focus()}
  function hide(){overlay.classList.remove('open');feedback.textContent='';open.focus()}
- function check(){if(input.value==='2019'){locked.style.display='none';unlocked.classList.add('visible');status.textContent='ACCESS GRANTED'}else{feedback.textContent='ACCESS DENIED — INVALID PASSWORD';input.select()}}
+ function check(){if(input.value==='2019'){locked.style.display='none';unlocked.classList.add('visible');status.textContent='ACCESS GRANTED';if(window.ARCHID)window.ARCHID.saveProgress('written-records:personnel-directory',{unlocked:true}).catch(error=>console.warn('ARCHID progress could not be saved.',error));}else{feedback.textContent='ACCESS DENIED — INVALID PASSWORD';input.select()}}
  open.addEventListener('click',show);close.addEventListener('click',hide);unlock.addEventListener('click',check);
  input.addEventListener('keydown',e=>{if(e.key==='Enter')check();if(e.key==='Escape')hide()});
  overlay.addEventListener('click',e=>{if(e.target===overlay)hide()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))hide()});
 })();
 </script>
+<script src="../assets/js/archid.js"></script>
 </body>
 </html>
