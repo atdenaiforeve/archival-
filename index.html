@@ -7,6 +7,10 @@
 <meta name="description" content="ARCHIVAL — FARB Central Records Database.">
 <title>ARCHIVAL — FARB Central Records</title>
 <link rel="stylesheet" href="assets/css/archival.css">
+<script>
+(function(){try{var d=document.documentElement,q=/[?&]boot\b/.test(location.search);
+if((q||!sessionStorage.getItem('archival-boot'))&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('booting');setTimeout(function(){d.classList.remove('booting')},15000);}}catch(e){}})();
+</script>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
@@ -19,6 +23,14 @@
 <symbol id="i-open" viewBox="0 0 24 24"><path d="M9 5h10v10"/><path d="M19 5 8 16"/></symbol>
 <symbol id="i-go" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
 </defs></svg>
+<div class="boot" id="boot" role="status" aria-live="polite" aria-label="ARCHIVAL is starting">
+<div class="boot-inner">
+<svg class="boot-mark" aria-hidden="true"><use href="#i-mark"/></svg>
+<div class="boot-log" id="bootLog"></div>
+<div class="boot-bar" aria-hidden="true"><span id="bootBar"></span></div>
+<button class="boot-skip" id="bootSkip" type="button">Skip</button>
+</div>
+</div>
 <div class="shell">
 <aside class="rail">
 <a class="brand" href="./" aria-label="ARCHIVAL home">
@@ -44,14 +56,11 @@
 <div class="record-no">FARB records division / index 001</div>
 <h1>Central Archive</h1>
 <p class="lede">A central index of recovered records, internal documentation and unresolved material. Select a directory to review the records currently catalogued within it.</p>
-<div class="readout" role="group" aria-label="System readout">
-<div class="readout-head"><span>System readout</span><span>Directory revision // 001</span></div>
-<div class="readout-row"><span class="k">Database status</span><span class="v ok">OPERATIONAL</span></div>
-<div class="readout-row"><span class="k">Directory revision</span><span class="v">001</span></div>
-<div class="readout-row"><span class="k">Organisation</span><span class="v">FARB</span></div>
-<div class="readout-row"><span class="k">Directory access</span><span class="v">Public directory</span></div>
-<div class="readout-row"><span class="k">Collections</span><span class="v">3 — written records, audio transmissions, visual evidence</span></div>
-</div>
+<dl class="control home-control">
+<div><dt>Database status</dt><dd class="ok">OPERATIONAL</dd></div>
+<div><dt>Directory revision</dt><dd>001</dd></div>
+<div><dt>Directory access</dt><dd>Public directory</dd></div>
+</dl>
 <div class="section-head"><h2>Record collections</h2><span class="note">Select a record format</span></div>
 
 <div class="folders">
@@ -77,6 +86,7 @@
 </div>
 </div>
 <script src="./assets/js/archid.js"></script>
+<script src="./assets/js/archival-boot.js"></script>
 <script src="./assets/js/archival-ui.js"></script>
 </body>
 </html>
