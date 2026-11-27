@@ -6,19 +6,39 @@
 <meta name="theme-color" content="#101719">
 <title>2019 Record — ARCHIVAL</title>
 <style>
-:root{color-scheme:dark;--bg:#101719;--panel:#172326;--line:#304447;--text:#e5eeee;--muted:#91a5a6;--cyan:#65c9c5;--blue:#397fb8;--blue-light:#83c7f0;font-family:Inter,"Segoe UI",Arial,sans-serif}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text)}a{color:inherit;text-decoration:none}a:focus-visible{outline:3px solid #a0e2dc;outline-offset:4px}
-.topline{height:4px;background:linear-gradient(90deg,var(--cyan) 0 23%,#284447 23%)}header{background:#131e21;border-bottom:1px solid var(--line)}.header-inner,main,footer{width:min(1050px,calc(100% - 36px));margin:auto}.header-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}.brand{display:flex;align-items:center;gap:12px}.mark{width:36px;height:36px;display:grid;place-items:center;border:1px solid var(--cyan);color:var(--cyan);font-weight:800;border-radius:4px}.brand-name{font-size:16px;font-weight:800;letter-spacing:.18em}.brand-sub{margin-top:4px;color:var(--muted);font-size:9px;letter-spacing:.13em}.online{font-size:10px;color:var(--muted)}.dot{display:inline-block;width:7px;height:7px;margin-right:7px;border-radius:50%;background:var(--cyan)}
-main{padding:30px 0 50px}.back{display:inline-block;padding:11px 14px;border:1px solid var(--cyan);border-radius:4px;background:#172b2d;color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.08em}.eyebrow{margin-top:28px;color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.17em}h1{margin:9px 0 7px;font-size:clamp(23px,4vw,34px);letter-spacing:-.025em}.subtitle{color:var(--muted);font-size:12px;line-height:1.7}.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:22px 0}.cell{padding:12px;border:1px solid var(--line);background:#142023;border-radius:4px}.cell span{display:block;color:var(--muted);font-size:9px;letter-spacing:.1em}.cell strong{display:block;margin-top:6px;font-size:11px}
-.viewer{border:1px solid #426064;border-radius:6px;background:#0d1719;overflow:hidden}.viewer-head{display:flex;justify-content:space-between;gap:12px;padding:13px 15px;border-bottom:1px solid #397fb8;background:linear-gradient(90deg,#1b343c,#172326);color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.12em}.viewer-head span:last-child{color:var(--muted);font-weight:600}.scroll-window{height:390px;overflow-y:auto;overscroll-behavior:contain;scrollbar-color:#397fb8 #101719;scrollbar-width:thin;background:#0d1719;position:relative}
-.record-table{width:100%;border-collapse:collapse;font-size:11px;min-width:620px}
-.record-table th{position:sticky;top:0;z-index:2;padding:12px 13px;text-align:left;background:#1b343c;color:var(--cyan);font-size:9px;letter-spacing:.1em;border-bottom:1px solid #397fb8}
-.record-table td{padding:10px 13px;border-bottom:1px solid #233437;color:var(--text);vertical-align:top}
-.record-table tbody tr:nth-child(even){background:#121f22}
-.record-table td:first-child{color:var(--blue-light);font-family:ui-monospace,monospace;white-space:nowrap}
-.record-table td:nth-child(3){white-space:nowrap;color:#b9cece}
-.viewer-foot{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;border-top:1px solid var(--line);color:var(--muted);font-size:9px;letter-spacing:.08em}.notice{margin-top:16px;padding:12px 14px;border-left:3px solid var(--cyan);background:#172326;color:var(--muted);font-size:10px;line-height:1.7}.notice strong{color:var(--cyan)}footer{display:flex;justify-content:space-between;gap:12px;padding:17px 0 22px;border-top:1px solid var(--line);color:var(--muted);font-size:9px;letter-spacing:.1em}
-@media(max-width:600px){.meta{grid-template-columns:1fr 1fr}.online{font-size:8px}.viewer-head{font-size:9px}.scroll-window{height:55vh;min-height:300px}footer{flex-direction:column}}
+:root{color-scheme:dark;--bg:#0b1114;--surface:#111b20;--surface-2:#162329;--line:#2b3d43;--line-strong:#3a555d;--text:#e6edef;--muted:#91a2a8;--cyan:#76c9c5;--blue:#8abbd4;font-family:Inter,"Segoe UI",Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -20%,#1b3035 0,transparent 48%),var(--bg);color:var(--text);font-size:14px;line-height:1.5}
+a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible,input:focus-visible,.scroll-window:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.topline{height:3px;background:linear-gradient(90deg,var(--cyan),#416c75 45%,#1b3035)}header{background:rgba(13,21,25,.94);border-bottom:1px solid var(--line)}
+.header-inner,main,footer{width:min(1120px,calc(100% - 48px));margin:auto}.header-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{display:flex;align-items:center;gap:13px}.mark{width:38px;height:38px;display:grid;place-items:center;border:1px solid #5eaaa8;color:var(--cyan);font-size:17px;font-weight:800;border-radius:3px}
+.brand-name{font-size:15px;font-weight:800;letter-spacing:.2em}.brand-sub{margin-top:3px;color:var(--muted);font-size:9px;letter-spacing:.16em}
+.online{font-size:9px;color:#a9b8bc;letter-spacing:.12em}.dot{display:inline-block;width:7px;height:7px;margin-right:8px;border-radius:50%;background:#75c9a4;box-shadow:0 0 9px #75c9a455}
+main{padding:34px 0 54px}.back{display:inline-flex;align-items:center;gap:8px;padding:9px 12px;border:1px solid var(--line-strong);border-radius:3px;color:#b7c9cd;background:#111d21;font-size:9px;font-weight:700;letter-spacing:.1em;transition:background .15s,border-color .15s}.back:hover{background:#1a2b30;border-color:var(--cyan)}
+.eyebrow{margin-top:34px;color:var(--cyan);font-size:9px;font-weight:800;letter-spacing:.2em;text-transform:uppercase}
+h1{max-width:900px;margin:9px 0 8px;font-size:clamp(22px,3.4vw,32px);line-height:1.2;letter-spacing:-.035em;font-weight:700}.subtitle{color:var(--muted);font-size:10px;letter-spacing:.11em}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:25px 0 20px}.cell{min-height:74px;padding:14px 16px;border:1px solid var(--line);border-radius:3px;background:linear-gradient(145deg,#142127,#10191d)}
+.cell span{display:block;color:var(--muted);font-size:8px;font-weight:700;letter-spacing:.15em}.cell strong{display:block;margin-top:8px;font-size:12px;font-weight:650;letter-spacing:.035em}
+.viewer{border:1px solid var(--line-strong);border-radius:4px;background:#0e171b;overflow:hidden;box-shadow:0 16px 42px #0003}
+.viewer-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 17px;border-bottom:1px solid var(--line);background:linear-gradient(90deg,#1a2b31,#142127);font-size:9px;font-weight:800;letter-spacing:.16em}
+.viewer-head span:first-child{color:var(--cyan)}.viewer-head span:last-child{color:var(--muted);font-weight:600;letter-spacing:.09em}
+.table-tools{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 16px;border-bottom:1px solid var(--line);background:#111c20}
+.search-wrap{display:flex;align-items:center;gap:9px;flex:1;max-width:420px;color:var(--muted);font-size:9px;letter-spacing:.1em}
+.search-wrap input{width:100%;min-width:0;padding:9px 11px;border:1px solid #344950;border-radius:3px;background:#0b1418;color:var(--text);font:inherit;font-size:11px;letter-spacing:normal}
+.search-wrap input::placeholder{color:#708187}.result-count{color:var(--muted);font-size:9px;white-space:nowrap;letter-spacing:.08em}
+.scroll-window{max-height:520px;overflow:auto;overscroll-behavior:contain;scrollbar-color:#496a72 #101719;scrollbar-width:thin;background:#0d1719}
+.record-table{width:100%;border-collapse:collapse;font-size:11px;min-width:700px}
+.record-table th{position:sticky;top:0;z-index:2;padding:13px 15px;text-align:left;background:#1a2d34;color:#a9d9d6;font-size:8px;font-weight:800;letter-spacing:.14em;border-bottom:1px solid #46636b;white-space:nowrap}
+.record-table td{padding:12px 15px;border-bottom:1px solid #213137;color:#d9e2e4;vertical-align:middle}
+.record-table tbody tr{transition:background .12s}.record-table tbody tr:nth-child(even){background:#111d21}.record-table tbody tr:hover{background:#1b3036}
+.record-table td:first-child{color:var(--blue);font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:10px;white-space:nowrap}
+.record-table td:nth-child(2){font-weight:600}.record-table td:nth-child(3){white-space:nowrap;color:#b9c9cd;font-variant-numeric:tabular-nums}.record-table td:nth-child(4){color:#aebdc1}
+.viewer-foot{display:flex;justify-content:space-between;gap:10px;padding:11px 16px;border-top:1px solid var(--line);color:var(--muted);font-size:8px;font-weight:700;letter-spacing:.13em}
+.notice{margin-top:16px;padding:14px 16px;border:1px solid var(--line);border-left:3px solid var(--cyan);background:#111d21;color:var(--muted);font-size:10px;line-height:1.75}.notice strong{color:var(--cyan);font-size:9px;letter-spacing:.1em}
+footer{display:flex;justify-content:space-between;gap:12px;padding:18px 0 24px;border-top:1px solid var(--line);color:#7f9298;font-size:8px;letter-spacing:.14em}
+@media(max-width:650px){.header-inner,main,footer{width:calc(100% - 28px)}.header-inner{min-height:68px}.online{font-size:8px}.eyebrow{margin-top:27px}.meta{grid-template-columns:1fr 1fr;gap:8px}.cell{padding:12px}.viewer-head{align-items:flex-start;flex-direction:column;gap:5px}.table-tools{align-items:flex-start;flex-direction:column}.search-wrap{max-width:none;width:100%}.scroll-window{max-height:60vh;min-height:280px}footer{flex-direction:column}}
+@media print{body{background:#fff;color:#111}.topline,header,.back,.table-tools,footer{display:none!important}main{width:100%;padding:0}.eyebrow,.subtitle,.notice,.cell span{color:#444}.viewer,.cell,.notice{background:#fff;border-color:#bbb;box-shadow:none}.record-table{min-width:0;font-size:8pt}.record-table th{position:static;background:#e9eeee;color:#111}.record-table td{color:#111!important;border-color:#ccc}.scroll-window{max-height:none;overflow:visible}.meta{break-inside:avoid}}
+
 </style>
 </head>
 <body>
@@ -35,7 +55,8 @@ main{padding:30px 0 50px}.back{display:inline-block;padding:11px 14px;border:1px
 <div class="cell"><span>REGISTER SIZE</span><strong>50 EMPLOYEES</strong></div>
 </div>
 <section class="viewer" aria-label="2019 employee clock-in register">
-<div class="viewer-head"><span>RECORD CONTENTS</span><span>50 ENTRIES / SCROLL TO REVIEW ↓</span></div>
+<div class="viewer-head"><span>RECORD CONTENTS</span><span>PERSONNEL ATTENDANCE · 01 JAN — 31 DEC 2019</span></div>
+<div class="table-tools"><label class="search-wrap" for="recordSearch">FIND RECORD <input id="recordSearch" type="search" placeholder="Search ID, employee or recorded job..." autocomplete="off"></label><span class="result-count" id="resultCount" aria-live="polite">SHOWING 50 OF 50 RECORDS</span></div>
 <div class="scroll-window" tabindex="0" aria-label="Scrollable 2019 clock-in register">
 <table class="record-table">
 <thead><tr><th>EMPLOYEE ID</th><th>EMPLOYEE NAME</th><th>CLOCK-IN TIME</th><th>RECORDED JOB</th></tr></thead>
@@ -94,9 +115,27 @@ main{padding:30px 0 50px}.back{display:inline-block;padding:11px 14px;border:1px
 </div>
 <div class="viewer-foot"><span>50 EMPLOYEE RECORDS</span><span>ARCHIVAL // 2019</span></div>
 </section>
-<div class="notice"><strong>REGISTER STATUS:</strong> 50 clock-in entries recorded. Employee names and job titles follow the 2019 FARB personnel and job registers. Clock-in times are fictional entries created for this archive record.</div>
+<div class="notice"><strong>RECORD NOTE:</strong> 50 clock-in entries recorded. Employee names and job titles follow the 2019 FARB personnel and job registers. Clock-in times are fictional entries created for this archive record.</div>
 </main>
 <footer><span>ARCHIVAL // RECORDS DIVISION</span><span>FARB-2019-001</span></footer>
+<script>
+(function(){
+ const search=document.getElementById('recordSearch');
+ const count=document.getElementById('resultCount');
+ const rows=Array.from(document.querySelectorAll('.record-table tbody tr'));
+ function filterRecords(){
+   const term=search.value.trim().toLocaleLowerCase();
+   let visible=0;
+   rows.forEach(row=>{
+     const match=row.textContent.toLocaleLowerCase().includes(term);
+     row.hidden=!match;
+     if(match) visible++;
+   });
+   count.textContent='SHOWING '+visible+' OF '+rows.length+' RECORDS';
+ }
+ search.addEventListener('input',filterRecords);
+})();
+</script>
 <script src="../assets/js/archid.js"></script>
 </body>
 </html>
