@@ -26,6 +26,15 @@ h1{margin:9px 0;font-size:clamp(29px,5vw,42px);font-weight:600;letter-spacing:-.
 .folder-icon:after{content:"";position:absolute;left:1px;right:1px;top:14px;bottom:2px;background:linear-gradient(150deg,#83c7f0,#28639b);border:1px solid #b5e2ff;border-radius:3px 5px 7px 7px;clip-path:polygon(0 0,100% 0,92% 100%,0 100%);box-shadow:inset 0 2px 0 #d9f0ff}
 .folder-info{display:block;min-width:0}.folder-title{display:block;font-size:12px;font-weight:800;letter-spacing:.08em;overflow-wrap:anywhere}.folder-meta{display:block;margin-top:7px;color:var(--muted);font-size:10px;line-height:1.6}.folder-lock{display:block;margin-top:7px;color:var(--cyan);font-size:9px;font-weight:800;letter-spacing:.12em}
 .notice{padding:14px 16px;border:1px solid var(--line);border-left:3px solid var(--cyan);border-radius:5px;color:var(--muted);font-size:11px;line-height:1.7;background:linear-gradient(90deg,#17303355,transparent)}.notice strong{color:var(--cyan)}
+.archid-panel{margin-top:18px;padding:16px;border:1px solid #304f52;border-radius:6px;background:#132124}
+.archid-title{color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.14em}
+.archid-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.archid-item{padding:10px;border:1px solid var(--line);border-radius:4px;background:#101a1c}
+.archid-item span{display:block;color:var(--muted);font-size:9px;letter-spacing:.09em}
+.archid-item strong{display:block;margin-top:5px;color:var(--text);font-size:11px}
+.archid-note{margin:8px 0 0;color:var(--muted);font-size:10px;line-height:1.6}
+.archid-check{min-height:38px;padding:0 12px;border:1px solid var(--cyan);border-radius:4px;background:#1b383a;color:var(--cyan);font-size:9px;font-weight:800;letter-spacing:.1em;cursor:pointer}
+@media(max-width:480px){.archid-grid{grid-template-columns:1fr}}
 .exit{display:block;width:max-content;max-width:100%;margin:25px auto 0;padding:14px 20px;border:1px solid var(--cyan);border-radius:5px;background:#172b2d;color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:.08em}
 footer{display:flex;justify-content:space-between;gap:15px;padding:18px 0 24px;border-top:1px solid var(--line);color:var(--muted);font-size:9px;letter-spacing:.1em}
 .overlay{position:fixed;inset:0;z-index:5;display:none;align-items:center;justify-content:center;padding:16px;background:#050b0ce8;overflow:auto}.overlay.open{display:flex}
@@ -64,6 +73,15 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
 </section>
 <div class="rule"></div>
 <div class="notice"><strong>RECORDS DIVISION NOTICE</strong> — Folder access is restricted. Directory metadata is visible in the catalogue; record contents require the assigned access phrase.</div>
+<section class="archid-panel" aria-label="Device identity and save status">
+ <div class="archid-title">ARCHID // DEVICE &amp; SAVE STATUS</div>
+ <div class="archid-grid">
+  <div class="archid-item"><span>DEVICE IDENTITY</span><strong id="archidConnection">CHECKING…</strong></div>
+  <div class="archid-item"><span>DIRECTORY ACCESS SAVE</span><strong id="archidSaveStatus">NOT CHECKED</strong></div>
+ </div>
+ <button class="archid-check" id="archidCheckButton" type="button">CHECK SAVE STATUS</button>
+ <p class="archid-note" id="archidStatusNote" aria-live="polite">Checking whether this browser is connected to an ARCHID profile. This does not display your private device token.</p>
+</section>
 <a class="exit" href="../">← EXIT COLLECTION / RETURN TO CENTRAL ARCHIVE</a>
 </main>
 <footer><span>ARCHIVAL // RECORDS DIVISION</span><span>DOCUMENT COLLECTION // DOC-001</span></footer>
@@ -108,6 +126,10 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
  const locked=document.getElementById('lockedPanel');
  const unlocked=document.getElementById('unlockedPanel');
  const status=document.getElementById('accessStatus');
+ const identityStatus=document.getElementById('archidConnection');
+ const saveStatus=document.getElementById('archidSaveStatus');
+ const statusNote=document.getElementById('archidStatusNote');
+ const checkStatusButton=document.getElementById('archidCheckButton');
  let accessGranted=false;
  function applyUnlocked(){
   accessGranted=true;
@@ -116,6 +138,36 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
   status.textContent='ACCESS GRANTED';
   const lockLabel=open.querySelector('.folder-lock');
   if(lockLabel)lockLabel.textContent='▣ ACCESS GRANTED';
+ }
+ async function refreshArchidStatus(){
+  if(!window.ARCHID){
+   identityStatus.textContent='NOT AVAILABLE';
+   saveStatus.textContent='CANNOT CHECK';
+   statusNote.textContent='ARCHID script did not load. The directory can still be used, but its access cannot be saved to a profile.';
+   return;
+  }
+  identityStatus.textContent='CONNECTING…';
+  saveStatus.textContent='CHECKING…';
+  try{
+   await window.ARCHID.ready;
+   if(window.ARCHID.state!=='ready')throw new Error('Device identity is not connected.');
+   identityStatus.textContent='CONNECTED';
+   const progress=await window.ARCHID.getProgress();
+   const saved=progress&&progress['written-records:personnel-directory'];
+   if(saved&&saved.unlocked===true){
+    saveStatus.textContent='SAVED ✓';
+    statusNote.textContent='This ARCHID profile has the directory unlock saved. It should restore automatically on this browser and on any paired device.';
+    applyUnlocked();
+   }else{
+    saveStatus.textContent='NOT SAVED';
+    statusNote.textContent='This profile is connected, but no directory unlock is saved yet. Enter the access code once to save it.';
+   }
+  }catch(error){
+   identityStatus.textContent='OFFLINE / ERROR';
+   saveStatus.textContent='UNABLE TO VERIFY';
+   statusNote.textContent='Could not verify the save with the ARCHID server. Check your connection and try again.';
+   console.warn('[ARCHID] Status check failed:',error);
+  }
  }
  async function restoreAccess(){
   if(!window.ARCHID)return false;
@@ -163,6 +215,7 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
    input.select();
   }
  }
+ checkStatusButton.addEventListener('click',refreshArchidStatus);
  open.addEventListener('click',show);
  close.addEventListener('click',hide);
  unlock.addEventListener('click',check);
@@ -170,7 +223,7 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
  overlay.addEventListener('click',e=>{if(e.target===overlay)hide()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))hide()});
  window.addEventListener('archid-state',()=>{if(window.ARCHID&&window.ARCHID.state==='ready')restoreAccess()});
- if(window.ARCHID)restoreAccess();
+ if(window.ARCHID){restoreAccess();refreshArchidStatus();}
 })();
 </script>
 </body>
