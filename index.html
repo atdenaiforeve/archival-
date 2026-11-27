@@ -1,209 +1,82 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#10191c">
-  <meta name="description" content="ARCHIVAL — FARB Central Records Database.">
-  <title>ARCHIVAL — FARB Central Records</title>
-  <style>
-    :root {
-      color-scheme: dark;
-      --bg: #101719;
-      --panel: #172326;
-      --panel-2: #1c2b2e;
-      --line: #304447;
-      --text: #e5eeee;
-      --muted: #91a5a6;
-      --cyan: #65c9c5;
-      --cyan-soft: #a0e2dc;
-      --red: #c96d68;
-      --amber: #c7a875;
-      --radius: 9px;
-      font-family: Inter, "Segoe UI", Arial, sans-serif;
-    }
-    * { box-sizing: border-box; }
-    html { min-width: 320px; -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      min-height: 100svh;
-      background: var(--bg);
-      color: var(--text);
-      letter-spacing: .01em;
-      overflow-x: hidden;
-    }
-    a { color: inherit; text-decoration: none; }
-    a:focus-visible { outline: 3px solid var(--cyan-soft); outline-offset: 4px; }
-    .topline { height: 4px; background: linear-gradient(90deg, var(--cyan) 0 23%, #284447 23% 100%); }
-    header {
-      border-bottom: 1px solid var(--line);
-      background: #131e21;
-    }
-    .header-inner, main, footer { width: min(1120px, calc(100% - 44px)); margin: 0 auto; }
-    .header-inner {
-      min-height: 82px; display: flex; align-items: center;
-      justify-content: space-between; gap: 24px;
-    }
-    .brand { display: flex; align-items: center; gap: 14px; min-width: 0; }
-    .brand-mark {
-      width: 38px; height: 38px; flex: 0 0 38px; display: grid; place-items: center;
-      border: 1px solid var(--cyan); color: var(--cyan);
-      font-size: 18px; font-weight: 700; border-radius: 5px;
-    }
-    .brand-name { font-size: 18px; font-weight: 700; letter-spacing: .19em; }
-    .brand-sub { margin-top: 4px; color: var(--muted); font-size: 10px; letter-spacing: .14em; }
-    .header-meta { display: flex; align-items: center; gap: 22px; color: var(--muted); font-size: 11px; white-space: nowrap; }
-    .status-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--cyan); margin-right: 8px; box-shadow: 0 0 8px #65c9c566; }
-    main { padding: 42px 0 64px; }
-    .eyebrow { color: var(--cyan); font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; }
-    .intro { display: flex; justify-content: space-between; align-items: end; gap: 30px; margin-bottom: 30px; }
-    h1 { margin: 10px 0 9px; font-size: clamp(30px, 5vw, 43px); font-weight: 600; letter-spacing: -.035em; }
-    .intro p { max-width: 600px; margin: 0; color: var(--muted); font-size: 14px; line-height: 1.7; }
-    .index-stamp { min-width: 155px; padding: 13px 15px; border: 1px solid var(--line); border-radius: 6px; color: var(--muted); font-size: 10px; line-height: 1.8; }
-    .index-stamp strong { display: block; color: var(--text); font-size: 12px; letter-spacing: .08em; }
-    .rule { height: 1px; background: var(--line); margin: 28px 0; }
-    .section-heading { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 15px; }
-    h2 { margin: 0; font-size: 13px; font-weight: 650; letter-spacing: .13em; text-transform: uppercase; }
-    .section-note { color: var(--muted); font-size: 11px; text-align: right; }
-    .format-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-    .format-button {
-      min-width: 0;
-      min-height: 104px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      padding: 20px 18px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: linear-gradient(145deg, var(--panel-2), var(--panel));
-      transition: border-color .18s ease, background-color .18s ease, transform .18s ease;
-      touch-action: manipulation;
-      -webkit-tap-highlight-color: #65c9c522;
-    }
-    .format-button:hover { border-color: var(--cyan); background: #1d3032; transform: translateY(-2px); }
-    .format-symbol { flex: 0 0 34px; color: var(--cyan); font-size: 25px; text-align: center; }
-    .format-copy { display: flex; flex: 1 1 auto; min-width: 0; flex-direction: column; gap: 7px; }
-    .format-copy strong { font-size: 14px; font-weight: 650; line-height: 1.3; }
-    .format-copy small { color: var(--muted); font-size: 9px; letter-spacing: .1em; line-height: 1.5; overflow-wrap: anywhere; }
-    .format-arrow { color: var(--cyan); font-size: 20px; flex: 0 0 auto; }
-    .notice {
-      padding: 15px 17px;
-      border: 1px solid var(--line);
-      border-left: 3px solid var(--amber);
-      border-radius: 5px;
-      color: var(--muted);
-      font-size: 11px;
-      line-height: 1.7;
-      overflow-wrap: anywhere;
-    }
-    .notice strong { color: var(--amber); letter-spacing: .1em; }
-    footer {
-      display: flex; justify-content: space-between; gap: 18px;
-      padding: 18px 0 24px; border-top: 1px solid var(--line);
-      color: var(--muted); font-size: 9px; letter-spacing: .1em;
-    }
-    @media (min-width: 761px) and (max-width: 980px) {
-      .format-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .format-button:last-child { grid-column: 1 / -1; }
-    }
-    @media (max-width: 760px) {
-      .intro { align-items: start; flex-direction: column; }
-      .format-grid { grid-template-columns: 1fr; }
-      .header-meta { gap: 10px; }
-      .header-meta .meta-extra { display: none; }
-      .format-button { min-height: 88px; }
-    }
-    @media (max-width: 440px) {
-      .header-inner, main, footer { width: min(100% - 28px, 1120px); }
-      .header-inner { min-height: 72px; gap: 10px; }
-      .brand { gap: 10px; }
-      .brand-mark { width: 34px; height: 34px; flex-basis: 34px; }
-      .brand-name { font-size: 15px; }
-      .brand-sub { font-size: 8px; letter-spacing: .08em; }
-      .header-meta { font-size: 9px; }
-      main { padding-top: 30px; }
-      .section-heading { align-items: flex-start; flex-direction: column; gap: 7px; }
-      .section-note { text-align: left; }
-      .format-button { padding: 17px 14px; gap: 11px; }
-      footer { flex-direction: column; line-height: 1.6; }
-    }
-    @media (hover: none) {
-      .format-button:hover { transform: none; }
-    }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a0f11">
+<meta name="description" content="ARCHIVAL — FARB Central Records Database.">
+<title>ARCHIVAL — FARB Central Records</title>
+<link rel="stylesheet" href="assets/css/archival.css">
 </head>
 <body>
-  <div class="topline"></div>
-  <header>
-    <div class="header-inner">
-      <a class="brand" href="./" aria-label="ARCHIVAL home">
-        <div class="brand-mark">A</div>
-        <div>
-          <div class="brand-name">ARCHIVAL</div>
-          <div class="brand-sub">FARB // CENTRAL RECORDS DATABASE</div>
-        </div>
-      </a>
-      <div class="header-meta">
-        <span><i class="status-dot"></i>ARCHIVE SYSTEM ONLINE</span>
-        <span class="meta-extra">PUBLIC DIRECTORY</span>
-      </div>
-    </div>
-  </header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+<symbol id="i-mark" viewBox="0 0 40 40"><rect x="1.5" y="1.5" width="37" height="37" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M11 29 20 10l9 19M14.5 23h11" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-archive" viewBox="0 0 24 24"><path d="M3 7h18v13H3z"/><path d="M3 7l2-4h14l2 4"/><path d="M10 12h4"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 12h6M9 16h6"/></symbol>
+<symbol id="i-audio" viewBox="0 0 24 24"><path d="M3 12h2M7.5 8v8M12 4.5v15M16.5 8v8M21 12h-2"/></symbol>
+<symbol id="i-image" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="9" cy="10" r="1.6"/><path d="M3 17l5-4 4 3 3-2 6 4"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="M16 16l5 5"/></symbol>
+<symbol id="i-open" viewBox="0 0 24 24"><path d="M9 5h10v10"/><path d="M19 5 8 16"/></symbol>
+<symbol id="i-go" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+</defs></svg>
+<div class="shell">
+<aside class="rail">
+<a class="brand" href="./" aria-label="ARCHIVAL home">
+<svg class="brand-mark" aria-hidden="true"><use href="#i-mark"/></svg>
+<span><span class="brand-name">ARCHIVAL</span><span class="brand-sub" style="display:block">FARB // CENTRAL RECORDS DATABASE</span></span>
+</a>
+<nav class="nav" aria-label="Archive collections">
+<p class="nav-label">Collections</p>
+<a href="./" aria-current="page"><svg class="icon" aria-hidden="true"><use href="#i-archive"/></svg><span>Central archive</span><span></span></a>
+<a href="documents/"><svg class="icon" aria-hidden="true"><use href="#i-doc"/></svg><span>Written records</span><span class="code">DOC-001</span></a>
+<a href="audio/"><svg class="icon" aria-hidden="true"><use href="#i-audio"/></svg><span>Audio transmissions</span><span class="code">AUD-001</span></a>
+<a href="visual/"><svg class="icon" aria-hidden="true"><use href="#i-image"/></svg><span>Visual evidence</span><span class="code">VIS-001</span></a>
+</nav>
+<div class="rail-foot">
+<div class="chip" data-archid-chip><span class="dot"></span><span><span data-archid-label>Connecting</span><small>ARCHID device identity</small></span></div>
+</div>
+</aside>
+<div class="stage">
+<div class="banner"><span class="hide-sm">FARB records division</span><span class="status"><span class="dot"></span>ARCHIVE SYSTEM ONLINE</span></div>
+<main class="main" id="main">
+<nav class="crumbs" aria-label="Breadcrumb"><span aria-current="page">Central archive</span></nav>
 
-  <main>
-    <section class="intro">
-      <div>
-        <div class="eyebrow">FARB records division / index 001</div>
-        <h1>Central Archive</h1>
-        <p>A central index of recovered records, internal documentation and unresolved material. Select a directory to review the records currently catalogued within it.</p>
-      </div>
-      <div class="index-stamp">
-        DATABASE STATUS
-        <strong>OPERATIONAL</strong>
-        DIRECTORY REVISION // 001
-      </div>
-    </section>
+<div class="record-no">FARB records division / index 001</div>
+<h1>Central Archive</h1>
+<p class="lede">A central index of recovered records, internal documentation and unresolved material. Select a directory to review the records currently catalogued within it.</p>
+<div class="readout" role="group" aria-label="System readout">
+<div class="readout-head"><span>System readout</span><span>Directory revision // 001</span></div>
+<div class="readout-row"><span class="k">Database status</span><span class="v ok">OPERATIONAL</span></div>
+<div class="readout-row"><span class="k">Directory revision</span><span class="v">001</span></div>
+<div class="readout-row"><span class="k">Organisation</span><span class="v">FARB</span></div>
+<div class="readout-row"><span class="k">Directory access</span><span class="v">Public directory</span></div>
+<div class="readout-row"><span class="k">Collections</span><span class="v">3 — written records, audio transmissions, visual evidence</span></div>
+</div>
+<div class="section-head"><h2>Record collections</h2><span class="note">Select a record format</span></div>
 
-    <div class="rule"></div>
+<div class="folders">
+<a class="folder" href="documents/">
+<span class="f-top"><svg class="icon f-icon" aria-hidden="true"><use href="#i-doc"/></svg><span class="f-code">DOC-001</span></span>
+<span><span class="f-name">Written Records</span><span class="f-desc" style="display:block">Reports, memos, files</span></span>
+<span class="f-meta"><span><strong>8</strong> files catalogued</span><svg class="icon go" aria-hidden="true"><use href="#i-go"/></svg></span>
+</a>
+<a class="folder" href="audio/">
+<span class="f-top"><svg class="icon f-icon" aria-hidden="true"><use href="#i-audio"/></svg><span class="f-code">AUD-001</span></span>
+<span><span class="f-name">Audio Transmissions</span><span class="f-desc" style="display:block">Voice logs, signals, recordings</span></span>
+<span class="f-meta"><span>No records yet</span><svg class="icon go" aria-hidden="true"><use href="#i-go"/></svg></span>
+</a>
+<a class="folder" href="visual/">
+<span class="f-top"><svg class="icon f-icon" aria-hidden="true"><use href="#i-image"/></svg><span class="f-code">VIS-001</span></span>
+<span><span class="f-name">Visual Evidence</span><span class="f-desc" style="display:block">Video, photographs, footage</span></span>
+<span class="f-meta"><span>No records yet</span><svg class="icon go" aria-hidden="true"><use href="#i-go"/></svg></span>
+</a>
+</div>
 
-    <section aria-labelledby="formats-title">
-      <div class="section-heading">
-        <h2 id="formats-title">Record collections</h2>
-        <span class="section-note">SELECT A RECORD FORMAT</span>
-      </div>
-      <div class="format-grid">
-        <a class="format-button" href="audio/">
-          <span class="format-symbol" aria-hidden="true">◖))</span>
-          <span class="format-copy"><strong>Audio Transmissions</strong><small>VOICE LOGS // SIGNALS // RECORDINGS</small></span>
-          <span class="format-arrow" aria-hidden="true">→</span>
-        </a>
-        <a class="format-button" href="visual/">
-          <span class="format-symbol" aria-hidden="true">▧</span>
-          <span class="format-copy"><strong>Visual Evidence</strong><small>VIDEO // PHOTOGRAPHS // FOOTAGE</small></span>
-          <span class="format-arrow" aria-hidden="true">→</span>
-        </a>
-        <a class="format-button" href="documents/">
-          <span class="format-symbol" aria-hidden="true">▤</span>
-          <span class="format-copy"><strong>Written Records</strong><small>REPORTS // MEMOS // FILES</small></span>
-          <span class="format-arrow" aria-hidden="true">→</span>
-        </a>
-      </div>
-    </section>
-
-    <div class="rule"></div></main>
-
-  <footer>
-    <span>ARCHIVAL // FARB RECORDS DIVISION</span>
-    <span>UNAUTHORISED ALTERATION OF RECORDS IS PROHIBITED</span>
-  </footer>
+</main>
+<footer class="foot"><span>ARCHIVAL // FARB RECORDS DIVISION</span><span>UNAUTHORISED ALTERATION OF RECORDS IS PROHIBITED</span></footer>
+</div>
+</div>
 <script src="./assets/js/archid.js"></script>
+<script src="./assets/js/archival-ui.js"></script>
 </body>
 </html>

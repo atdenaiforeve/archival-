@@ -16,7 +16,11 @@ The 2019 file, **FARB-2019-001 // Employee Attendance Register**, contains a fic
 
 ## Design
 
-The site uses a dark charcoal interface with muted text, cyan highlights, and blue record elements to create a consistent archival-terminal aesthetic.
+The site uses a dark charcoal interface with muted text, cyan highlights, and blue record elements to create a consistent archival-terminal aesthetic. Shared styling lives in `assets/css/archival.css`; `assets/js/archival-ui.js` only displays ARCHID status in the sidebar and never touches identity data.
+
+## Filing audio and visual records
+
+The Audio Transmissions and Visual Evidence pages are currently empty. Each page has a clearly marked list near the bottom of its file (`TRANSMISSIONS` in `audio/index.html`, `EVIDENCE` in `visual/index.html`). Adding an entry to that list builds the catalogue rows, the playback panel or the evidence viewer automatically; the entry format is described in the comment above the list.
 
 ## Technology
 
