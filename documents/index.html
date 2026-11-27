@@ -80,8 +80,8 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
 <div class="meta-cell"><span>ACCESS STATUS</span><strong id="accessStatus">LOCKED</strong></div>
 </div>
 <div id="lockedPanel">
-<label for="folderPassword">ENTER DIRECTORY PASSWORD</label>
-<div class="password-row"><input id="folderPassword" type="password" inputmode="numeric" autocomplete="new-password" placeholder="Enter access password"><button class="action" id="unlockButton" type="button">UNLOCK DIRECTORY</button></div>
+<label for="folderPassword">ENTER DIRECTORY ACCESS CODE</label>
+<div class="password-row"><input id="folderPassword" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Enter access code" aria-label="Directory access code"><button class="action" id="unlockButton" type="button">UNLOCK DIRECTORY</button></div>
 <p class="feedback" id="feedback" aria-live="polite"></p>
 </div>
 <div class="unlocked" id="unlockedPanel">
@@ -96,6 +96,7 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
 </div>
 </div>
 </div>
+<script src="../assets/js/archid.js"></script>
 <script>
 (() => {
  const overlay=document.getElementById('folderDialog');
@@ -172,6 +173,5 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
  if(window.ARCHID)restoreAccess();
 })();
 </script>
-<script src="../assets/js/archid.js"></script>
 </body>
 </html>
