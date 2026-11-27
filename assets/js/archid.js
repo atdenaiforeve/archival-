@@ -77,7 +77,8 @@
     }
   }
 
-  const ready = initialise().catch(error => {
+  const pairingMode = new URLSearchParams(window.location.search).has("archid-pair");
+  const ready = (pairingMode ? Promise.resolve({ needsPairing: true }) : initialise()).catch(error => {
     console.warn("[ARCHID] Identity service unavailable:", error.message);
     announce("offline");
     throw error;
