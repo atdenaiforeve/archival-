@@ -81,7 +81,7 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
 </div>
 <div id="lockedPanel">
 <label for="folderPassword">ENTER DIRECTORY PASSWORD</label>
-<div class="password-row"><input id="folderPassword" type="password" inputmode="numeric" autocomplete="off" placeholder="Enter access password"><button class="action" id="unlockButton" type="button">UNLOCK DIRECTORY</button></div>
+<div class="password-row"><input id="folderPassword" type="password" inputmode="numeric" autocomplete="new-password" placeholder="Enter access password"><button class="action" id="unlockButton" type="button">UNLOCK DIRECTORY</button></div>
 <p class="feedback" id="feedback" aria-live="polite"></p>
 </div>
 <div class="unlocked" id="unlockedPanel">
@@ -107,13 +107,69 @@ label{display:block;margin-bottom:8px;color:var(--muted);font-size:10px;font-wei
  const locked=document.getElementById('lockedPanel');
  const unlocked=document.getElementById('unlockedPanel');
  const status=document.getElementById('accessStatus');
- function show(){overlay.classList.add('open');input.focus()}
+ let accessGranted=false;
+ function applyUnlocked(){
+  accessGranted=true;
+  locked.style.display='none';
+  unlocked.classList.add('visible');
+  status.textContent='ACCESS GRANTED';
+  const lockLabel=open.querySelector('.folder-lock');
+  if(lockLabel)lockLabel.textContent='▣ ACCESS GRANTED';
+ }
+ async function restoreAccess(){
+  if(!window.ARCHID)return false;
+  try{
+   await window.ARCHID.ready;
+   const progress=await window.ARCHID.getProgress();
+   const saved=progress&&progress['written-records:personnel-directory'];
+   if(saved&&saved.unlocked===true){applyUnlocked();return true;}
+  }catch(error){
+   console.warn('[ARCHIVAL] Could not restore saved directory access.',error);
+  }
+  return false;
+ }
+ async function show(){
+  overlay.classList.add('open');
+  feedback.textContent='';
+  if(!accessGranted){
+   const restored=await restoreAccess();
+   if(!restored)input.focus();
+  }
+  if(accessGranted)close.focus();
+ }
  function hide(){overlay.classList.remove('open');feedback.textContent='';open.focus()}
- function check(){if(input.value==='2019'){locked.style.display='none';unlocked.classList.add('visible');status.textContent='ACCESS GRANTED';if(window.ARCHID)window.ARCHID.saveProgress('written-records:personnel-directory',{unlocked:true}).catch(error=>console.warn('ARCHID progress could not be saved.',error));}else{feedback.textContent='ACCESS DENIED — INVALID PASSWORD';input.select()}}
- open.addEventListener('click',show);close.addEventListener('click',hide);unlock.addEventListener('click',check);
+ async function check(){
+  if(input.value==='2019'){
+   applyUnlocked();
+   input.value='';
+   if(window.ARCHID){
+    try{
+     await window.ARCHID.saveProgress('written-records:personnel-directory',{unlocked:true});
+     feedback.textContent='ACCESS SAVED TO ARCHID PROFILE';
+     feedback.style.color='var(--cyan)';
+    }catch(error){
+     console.warn('[ARCHID] Progress could not be saved.',error);
+     feedback.textContent='ACCESS GRANTED, BUT PROFILE SAVE FAILED — CHECK CONNECTION';
+     feedback.style.color='var(--red)';
+    }
+   }else{
+    feedback.textContent='ACCESS GRANTED — DEVICE IDENTITY UNAVAILABLE';
+    feedback.style.color='var(--red)';
+   }
+  }else{
+   feedback.textContent='ACCESS DENIED — INVALID PASSWORD';
+   feedback.style.color='var(--red)';
+   input.select();
+  }
+ }
+ open.addEventListener('click',show);
+ close.addEventListener('click',hide);
+ unlock.addEventListener('click',check);
  input.addEventListener('keydown',e=>{if(e.key==='Enter')check();if(e.key==='Escape')hide()});
  overlay.addEventListener('click',e=>{if(e.target===overlay)hide()});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))hide()});
+ window.addEventListener('archid-state',()=>{if(window.ARCHID&&window.ARCHID.state==='ready')restoreAccess()});
+ if(window.ARCHID)restoreAccess();
 })();
 </script>
 <script src="../assets/js/archid.js"></script>
