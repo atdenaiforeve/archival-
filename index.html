@@ -7,6 +7,7 @@
 <meta name="description" content="ARCHIVAL — FARB Central Records Database.">
 <title>ARCHIVAL — FARB Central Records</title>
 <link rel="stylesheet" href="assets/css/archival.css">
+<link rel="stylesheet" href="assets/css/archival-fx.css">
 <script>
 (function(){try{var d=document.documentElement,q=/[?&]boot\b/.test(location.search);
 if((q||!sessionStorage.getItem('archival-boot'))&&!matchMedia('(prefers-reduced-motion: reduce)').matches){d.classList.add('booting');setTimeout(function(){d.classList.remove('booting')},15000);}}catch(e){}})();
@@ -53,14 +54,23 @@ if((q||!sessionStorage.getItem('archival-boot'))&&!matchMedia('(prefers-reduced-
 <main class="main" id="main">
 <nav class="crumbs" aria-label="Breadcrumb"><span aria-current="page">Central archive</span></nav>
 
+<div class="hero">
+<div class="hero-copy">
 <div class="record-no">FARB records division / index 001</div>
 <h1>Central Archive</h1>
 <p class="lede">A central index of recovered records, internal documentation and unresolved material. Select a directory to review the records currently catalogued within it.</p>
+</div>
+<div class="radar" aria-hidden="true"><i class="sweep"></i><i class="blip b1"></i><i class="blip b2"></i><i class="blip b3"></i><i class="blip b4 red"></i></div>
+</div>
 <dl class="control home-control">
 <div><dt>Database status</dt><dd class="ok">OPERATIONAL</dd></div>
 <div><dt>Directory revision</dt><dd>001</dd></div>
 <div><dt>Directory access</dt><dd>Public directory</dd></div>
 </dl>
+<div class="pulse" aria-hidden="true">
+<svg class="base" viewBox="0 0 1000 46" preserveAspectRatio="none"><polyline points="0,23 170,23 195,23 210,5 230,41 245,23 410,23 436,23 451,10 468,36 482,23 690,23 716,23 731,3 751,43 766,23 1000,23"/></svg>
+<svg class="live" viewBox="0 0 1000 46" preserveAspectRatio="none"><polyline points="0,23 170,23 195,23 210,5 230,41 245,23 410,23 436,23 451,10 468,36 482,23 690,23 716,23 731,3 751,43 766,23 1000,23"/></svg>
+</div>
 <div class="section-head"><h2>Record collections</h2><span class="note">Select a record format</span></div>
 
 <div class="folders">
@@ -87,6 +97,7 @@ if((q||!sessionStorage.getItem('archival-boot'))&&!matchMedia('(prefers-reduced-
 </div>
 <script src="./assets/js/archid.js"></script>
 <script src="./assets/js/archival-boot.js"></script>
+<script src="./assets/js/archival-fx.js"></script>
 <script src="./assets/js/archival-ui.js"></script>
 </body>
 </html>
